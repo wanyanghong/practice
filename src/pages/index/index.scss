@@ -1,0 +1,72 @@
+.index{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.scroll{
+    flex: 1;
+    overflow: hidden;
+}
+.header,.headerFix{
+    width: 100%;
+    height: 100rpx;
+    background: #fff;
+}
+.headerFix{
+    position: fixed;
+    top: 0;
+    z-index:6
+}
+.top{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+}
+.top Image{
+    width: 15%;
+    height: auto;
+    margin-left: 10rpx;
+}
+.right{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 30rpx;
+    justify-content: space-around;
+    margin-left: 10rpx;
+}
+.audio{
+    width: 100%;
+}
+.center{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+.bottomList{
+    width:100%;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+}
+.item{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.list {
+    width: 33.33333%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.list Image{
+    width: 50%;
+    height: 90%;
+}

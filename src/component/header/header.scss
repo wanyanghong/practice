@@ -1,0 +1,19 @@
+.headerList{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+   
+}
+.headerList text{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 100rpx;
+}
+.active{
+    border-bottom:solid  #FF2500 1rpx;
+    color : #FF2500;
+}
