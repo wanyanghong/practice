@@ -129,7 +129,7 @@ export default class Index extends Component {
         <View className={this.state.flag?"headerFix":"header"}>
           <Header headerList={this.state.headerList} onIsShow={this.isShow.bind(this)} />
         </View>
-        <ScrollView className='scroll' scrollY scrollIntoView={this.state.name} scrollTop="0">
+        <View className='scroll' scrollY  >
          <View id={this.state.name} >
             {
                 this.state.dataList.map ((item,index)=>{
@@ -167,7 +167,7 @@ export default class Index extends Component {
                 })
               }
          </View>
-      </ScrollView>
+        </View>
       </View>
     )
   }

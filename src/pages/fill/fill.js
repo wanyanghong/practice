@@ -48,11 +48,13 @@ import { View, Text , Button, Input} from '@tarojs/components';
   render() {
     return (
       <View className="wrap">
-        <View className="top">
-          <Input type="text" placeholder="输入用户名" onInput={(e)=>{this.setState({name:e.detail.value})}}/>
-          <Input type="text" placeholder="请输入密码" onInput={(e)=>{this.setState({passWord:e.detail.value})}}/>
+        <View className="list">
+          <View className="top">
+            <Input type="text" placeholder="输入用户名" onInput={(e)=>{this.setState({name:e.detail.value})}}/>
+            <Input type="password" placeholder="请输入密码" onInput={(e)=>{this.setState({passWord:e.detail.value})}}/>
+          </View>
+          <Button onClick={()=>{this.loginIng()}}>登陆</Button>
         </View>
-        <Button onClick={()=>{this.loginIng()}}>登陆</Button>
       </View>
     );
   }
