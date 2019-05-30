@@ -15,7 +15,8 @@ class App extends Component {
       'pages/index/index',
       'pages/attention/attention',
       'pages/follow/follow',
-      'pages/my/my'
+      'pages/my/my',
+      'pages/fill/fill'
     ],
     window: {
       backgroundTextStyle: 'light',

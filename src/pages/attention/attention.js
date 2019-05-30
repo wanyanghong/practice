@@ -26,15 +26,24 @@ class Attention extends Component {
         })
       }
     })
+    this.request('http://api.budejie.com/api/api_open.php?a=list&c=subscribe&category_id=5')
+  } 
+  request(url){
     Taro.request({
-      url:`http://api.budejie.com/api/api_open.php?a=list&c=subscribe&category_id=${this.state.category_id}`,
+      url:url,
       success:(res)=>{
         this.setState({
           rightList:res.data.list
         })
       }
     })
-  } 
+  }
+  clcikLeft(id){
+    this.request(`http://api.budejie.com/api/api_open.php?a=list&c=subscribe&category_id=${id}`)
+    this.setState({
+      category_id:id
+    })
+  }
   componentWillReceiveProps (nextProps,nextContext) {} 
   componentWillUnmount () {} 
   componentDidShow () {} 
@@ -42,12 +51,13 @@ class Attention extends Component {
   componentDidCatchError () {} 
   componentDidNotFound () {} 
   render() {
+    console.log(this.state.category_id)
     return (
       <View className="wrap">
         <View className="left">
           {
-            leftList.map((item,index)=>{
-              return <View key={index}>{item.name}</View>
+            this.state.leftList.map((item,index)=>{
+              return <Text key={index} className={this.state.category_id==item.id?"leftAdd":"leftList"} onClick={()=>{this.clcikLeft(item.id)}} >{item.name}</Text>
             })
           }
         </View>
@@ -56,13 +66,13 @@ class Attention extends Component {
             rightList.map((item,index)=>{
               return <View key={index} className="item">
                 <View className="leftItem">
-                  {/* <Image src={item.header} /> */}
+                  <Image src={item.header} />
                   <View className="right">
                     <Text>{item.screen_name}</Text>
                     <Tetx>{item.fans_count}人以关注</Tetx>
                   </View>
                 </View>
-                <Button>+关注</Button>
+                <Button className="btn">+关注</Button>
               </View>
             })
           }

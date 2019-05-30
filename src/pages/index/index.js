@@ -77,6 +77,14 @@ export default class Index extends Component {
         console.log(res[0].top)
         res[1].scrollTop // 显示区域的竖直滚动位置
       })
+      wx.setStorage({
+        key: 'name',
+        data:{name:'',passWord:''}
+      });
+      wx.setStorage({
+        key: 'user',
+        data: {user:'sunliang',pwd:'sunliang0928'},
+      });
   }
   headerVal(val){
     console.log(val)
