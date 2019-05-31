@@ -8,6 +8,7 @@ page{
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    background: #F1F1F1;
 }
 .scroll{
     flex: 1;
@@ -44,6 +45,14 @@ page{
 .audio{
     width: 100%;
 }
+.detail{
+    margin-top: 20rpx;
+}
+.detail Text{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
 .center{
     width: 100%;
     height: auto;
@@ -62,6 +71,8 @@ page{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-top: 20rpx;
+    background: #fff;
 }
 .list {
     width: 33.33333%;
@@ -71,6 +82,6 @@ page{
     justify-content: center;
 }
 .list Image{
-    width: 50%;
-    height: 90%;
+    width: 30%;
+    height: 60%;
 }

@@ -24,7 +24,7 @@ class My extends Component {
     wx.getStorage({
       key: 'name',
       success: (res)=>{
-       if(!res.data.name==''&&res.data.passWord==""){
+       if(!res.data.name==''&&!res.data.passWord==""){
           this.setState({
             flag:true,
             name:res.data.name

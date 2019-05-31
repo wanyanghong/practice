@@ -123,13 +123,22 @@ export default class Index extends Component {
       }
     })
   }
+  ping(index){
+    wx.navigateTo({
+      url: '../ping/ping'
+    });
+    wx.setStorage({
+      key: 'data',
+      data: this.state.dataList[index]
+    });
+  }
   render () {
     return (
       <View className='index'>
         <View className={this.state.flag?"headerFix":"header"}>
           <Header headerList={this.state.headerList} onIsShow={this.isShow.bind(this)} />
         </View>
-        <View className='scroll' scrollY  >
+        <ScrollView className='scroll' scrollY  >
          <View id={this.state.name} >
             {
                 this.state.dataList.map ((item,index)=>{
@@ -158,7 +167,7 @@ export default class Index extends Component {
                           <Image src={Down} />
                           <Text>{item.cai}</Text>
                         </View>
-                        <View className="list">
+                        <View className="list" onClick={()=>{this.ping(index)}}>
                           <Image src={Zhuan} />
                           <Text>{item.top_cmt.length<=0?0:item.top_cmt.length}</Text>
                         </View>
@@ -167,7 +176,7 @@ export default class Index extends Component {
                 })
               }
          </View>
-        </View>
+        </ScrollView>
       </View>
     )
   }

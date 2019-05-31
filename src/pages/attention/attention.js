@@ -13,7 +13,9 @@ class Attention extends Component {
     this.state={
       leftList:[],
       category_id:5,
-      rightList:[]
+      rightList:[],
+      flag:false,
+      guan:[]
     }
   }
   componentWillMount () {}
@@ -44,14 +46,51 @@ class Attention extends Component {
       category_id:id
     })
   }
+  clcikBnt(item,index){
+   if(this.state.flag){
+    this.state.rightList.map((items)=>{
+      if(items.uid==item.uid){
+          this.state.rightList[index].is_vip=true
+          this.state.guan.push(this.state.rightList[index])
+          this.setState({
+            rightList:this.state.rightList,
+            guan:this.state.guan
+          })
+          wx.setStorage({
+            key: 'guan',
+            data: this.state.guan
+        })
+      }
+     })
+   }else{
+     wx.navigateTo({
+       url: '../fill/fill'
+     });
+   }
+  }
   componentWillReceiveProps (nextProps,nextContext) {} 
   componentWillUnmount () {} 
-  componentDidShow () {} 
+  componentDidShow () {
+    wx.getStorage({
+      key: 'name',
+      success: (res)=>{
+        console.log(res)
+        if(res.data.name==''&&res.data.passWord==''){
+          this.setState({
+            flag:false
+          })
+        }else{
+          this.setState({
+            flag:true
+          })
+        }
+      }
+    });
+  } 
   componentDidHide () {} 
   componentDidCatchError () {} 
   componentDidNotFound () {} 
   render() {
-    console.log(this.state.category_id)
     return (
       <View className="wrap">
         <View className="left">
@@ -63,7 +102,7 @@ class Attention extends Component {
         </View>
         <ScrollView className="rightList" scrollY>
           {
-            rightList.map((item,index)=>{
+            this.state.rightList.map((item,index)=>{
               return <View key={index} className="item">
                 <View className="leftItem">
                   <Image src={item.header} />
@@ -72,7 +111,7 @@ class Attention extends Component {
                     <Tetx>{item.fans_count}人以关注</Tetx>
                   </View>
                 </View>
-                <Button className="btn">+关注</Button>
+                <Button className="btn" onClick={()=>{this.clcikBnt(item,index)}}>{item.is_vip?'✔已关注':'+关注'}</Button>
               </View>
             })
           }

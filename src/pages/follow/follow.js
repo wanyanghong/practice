@@ -10,16 +10,12 @@ class Follow extends Component {
   }
   constructor(){
     this.state={
-      flag:false
+      flag:false,
+      list:[]
     }
   }
-
- 
-
   componentWillMount () {}
-  componentDidMount () {
-  
-  } 
+  componentDidMount () {} 
   login(){
     wx.navigateTo({
       url: '../fill/fill'
@@ -32,8 +28,7 @@ class Follow extends Component {
       key: 'name',
       success: (res)=>{
         console.log(res)
-        if(res.data.name==''||res.data.passWord==''){
-          console.log(111)
+        if(res.data.name==''&&res.data.passWord==''){
           this.setState({
             flag:false
           })
@@ -44,11 +39,26 @@ class Follow extends Component {
         }
       }
     });
+    wx.getStorage({
+      key: 'guan',
+      success: (res)=>{
+       this.setState({
+         list:res.data
+       })
+      }
+    })
   } 
   componentDidHide () {} 
   componentDidCatchError () {} 
   componentDidNotFound () {} 
-  
+  Unclcik(index){
+    console.log(index)
+    let arr=this.state.list.splice(index,0)
+    this.setState({
+      list:this.state.list
+    })
+    console.log(this.state.list.splice(index,1))
+  }
   render() {
     return (
       <View className="wrap">  
@@ -59,10 +69,17 @@ class Follow extends Component {
           <View>哦耶~~~</View>
           <Button className="btn" onClick={()=>{this.login()}}>立即登陆/注册</Button>
         </View>
-        <View style={this.state.flag?{display:'block'}:{display:'none'}}>
-          一登陆
+        <View style={this.state.flag?{display:'block'}:{display:'none'}} className="guan">
           {
-            console.log(this.state)
+            this.state.list.map((item,index)=>{
+              return <View key={index} className="Item" >
+                <View className="list">
+                  <Image src={item.header} />
+                  <Text>{item.screen_name}</Text>
+                 </View>
+                 <Button onClick={()=>{this.Unclcik(index)}} className="btns">取消关注</Button>
+              </View>
+            })
           }
         </View>
       </View> 
